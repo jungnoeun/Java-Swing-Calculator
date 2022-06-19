@@ -8,7 +8,10 @@ import lombok.Getter;
 import lombok.Setter;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+
 import java.awt.Font;
+import java.awt.Color;
 
 
 public class start_cal extends JFrame{
@@ -16,7 +19,9 @@ public class start_cal extends JFrame{
 	public start_cal() {
 		setSize(430,600);
 		JPanel startP = new JPanel();
-		JLabel numbers = new JLabel();
+		JLabel numbers = new JLabel("0");
+		String firstNum = "";
+
 		
 		JButton btn0 = new JButton("0");
 		JButton btn1 = new JButton("1");
@@ -91,11 +96,18 @@ public class start_cal extends JFrame{
 		
 		
 		//패널에 JLabel 추가
-		JLabel lblNewLabel = new JLabel("0");
-		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 30));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setBounds(12, 22, 390, 110);
-		startP.add(lblNewLabel);
+		numbers.setBorder(new LineBorder(Color.GRAY));
+		numbers.setFont(new Font("굴림", Font.BOLD, 30));
+		numbers.setHorizontalAlignment(SwingConstants.RIGHT);
+		numbers.setBounds(12, 22, 390, 110);
+		startP.add(numbers);
+		
+		
+		// 버튼을 누르면 숫자가 입력&저장 
+		
+		
+		
+		
 		
 		// 기존 패널에 startPanel 추가
 		getContentPane().add(startP);
