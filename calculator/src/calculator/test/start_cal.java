@@ -23,6 +23,7 @@ public class start_cal extends JFrame{
 	String firstNum = "";
 	String PMDM = "";
 	String secondNum = "";
+	String resultNum = "";
 	int firN, secN;
 	int res = 0;
 	
@@ -112,11 +113,10 @@ public class start_cal extends JFrame{
 		numbers.setFont(new Font("굴림", Font.BOLD, 30));
 		numbers.setHorizontalAlignment(SwingConstants.RIGHT);
 		numbers.setBounds(12, 22, 390, 110);
+		
+		ClickAfterButton();
+		
 		startP.add(numbers);
-		
-		
-	
-		
 		
 		
 		
@@ -127,6 +127,18 @@ public class start_cal extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // 화면창 닫으면 프로그램 종료
 	}
 	
+	public void InitSetting() {
+		firstNum = "";
+		secondNum = "";
+		resultNum = "";
+		firN = 0;
+		secN = 0;
+		res = 0;
+		PMDM = "";
+		numbers.setText("0");
+	}
+	
+	
 	public void ClickAfterButton() {
 		
 		
@@ -134,12 +146,7 @@ public class start_cal extends JFrame{
 		btnInit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				firstNum = "";
-				secondNum = "";
-				firN = 0;
-				secN = 0;
-				res = 0;
-				PMDM = "";
+				InitSetting();
 			}
 		});
 		
@@ -148,22 +155,30 @@ public class start_cal extends JFrame{
 		btnRes.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				firN = Integer.parseInt(firstNum);
-				secN = Integer.parseInt(secondNum);
-				switch(PMDM) {
-				case "+":
-					res = firN + secN;
-					break;
-				case "-":
-					res = firN - secN;
-					break;
-				case "/":
-					res = firN / secN;
-					break;
-				case "*":
-					res = firN * secN;
-					break;
+				if(firstNum != "" && PMDM != "" && secondNum != "") {
+					numbers.setText(secondNum);
+					firN = Integer.parseInt(firstNum);
+					secN = Integer.parseInt(secondNum);
+					switch(PMDM) {
+					case "+":
+						res = firN + secN;
+						break;
+					case "-":
+						res = firN - secN;
+						break;
+					case "/":
+						res = firN / secN;
+						break;
+					case "*":
+						res = firN * secN;
+						break;
+					}
+					
+					resultNum = res + "";
+					numbers.setText(resultNum);
 				}
+					
+				//InitSetting();
 			}
 		});
 		
@@ -173,6 +188,7 @@ public class start_cal extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				PMDM = "+";
+				numbers.setText(firstNum);
 			}
 		});
 		
@@ -180,6 +196,7 @@ public class start_cal extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				PMDM = "-";
+				numbers.setText(firstNum);
 			}
 		});
 		
@@ -187,6 +204,7 @@ public class start_cal extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				PMDM = "/";
+				numbers.setText(firstNum);
 			}
 		});
 		
@@ -194,6 +212,7 @@ public class start_cal extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				PMDM = "*";
+				numbers.setText(firstNum);
 			}
 		});
 		
@@ -202,10 +221,13 @@ public class start_cal extends JFrame{
 		
 		btn0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(firstNum.equals("")) {
-					;
-				}else {
+				//firstNum이나 secondNum이 ""이면 아무것도 하지 말아야 함
+				if(firstNum != "" && PMDM.equals("")){
 					firstNum += "0";
+				}else if(secondNum != "" && PMDM != ""){
+					secondNum += "0";
+				}else {
+					;
 				}
 			}
 		});
