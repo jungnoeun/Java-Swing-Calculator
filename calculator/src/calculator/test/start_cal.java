@@ -12,33 +12,45 @@ import javax.swing.border.LineBorder;
 
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class start_cal extends JFrame{
 
+	JPanel startP;
+	JLabel numbers;
+	String firstNum = "";
+	String PMDM = "";
+	String secondNum = "";
+	int firN, secN;
+	int res = 0;
+	
+	JButton btn0, btn1, btn2, btn3, btn4, btn5, btn6,btn7,btn8,btn9;
+	JButton btnPlus, btnMin, btnDiv, btnMul, btnInit, btnRes;
+	
 	public start_cal() {
 		setSize(430,600);
-		JPanel startP = new JPanel();
-		JLabel numbers = new JLabel("0");
-		String firstNum = "";
+		startP = new JPanel();
+		numbers = new JLabel("0");
 
 		
-		JButton btn0 = new JButton("0");
-		JButton btn1 = new JButton("1");
-		JButton btn2 = new JButton("2");
-		JButton btn3 = new JButton("3");
-		JButton btn4 = new JButton("4");
-		JButton btn5 = new JButton("5");
-		JButton btn6 = new JButton("6");
-		JButton btn7 = new JButton("7");
-		JButton btn8 = new JButton("8");
-		JButton btn9 = new JButton("9");
-		JButton btnPlus = new JButton("+");
-		JButton btnMin = new JButton("-");
-		JButton btnDiv = new JButton("/");
-		JButton btnMul = new JButton("*");
-		JButton btnInit = new JButton("C");
-		JButton btnRes = new JButton("=");
+		btn0 = new JButton("0");
+		btn1 = new JButton("1");
+		btn2 = new JButton("2");
+		btn3 = new JButton("3");
+		btn4 = new JButton("4");
+		btn5 = new JButton("5");
+		btn6 = new JButton("6");
+		btn7 = new JButton("7");
+		btn8 = new JButton("8");
+		btn9 = new JButton("9");
+		btnPlus = new JButton("+");
+		btnMin = new JButton("-");
+		btnDiv = new JButton("/");
+		btnMul = new JButton("*");
+		btnInit = new JButton("C");
+		btnRes = new JButton("=");
 		//JButton btnDel = new JButton("del");
 		
 		// 패널추가
@@ -103,8 +115,7 @@ public class start_cal extends JFrame{
 		startP.add(numbers);
 		
 		
-		// 버튼을 누르면 숫자가 입력&저장 
-		
+	
 		
 		
 		
@@ -115,6 +126,194 @@ public class start_cal extends JFrame{
 		setVisible(true);// 화면 창 윈도우에 띄우는 기능
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // 화면창 닫으면 프로그램 종료
 	}
+	
+	public void ClickAfterButton() {
+		
+		
+		// 버튼을 누르면 숫자가 입력&저장 
+		btnInit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				firstNum = "";
+				secondNum = "";
+				firN = 0;
+				secN = 0;
+				res = 0;
+				PMDM = "";
+			}
+		});
+		
+		
+		
+		btnRes.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				firN = Integer.parseInt(firstNum);
+				secN = Integer.parseInt(secondNum);
+				switch(PMDM) {
+				case "+":
+					res = firN + secN;
+					break;
+				case "-":
+					res = firN - secN;
+					break;
+				case "/":
+					res = firN / secN;
+					break;
+				case "*":
+					res = firN * secN;
+					break;
+				}
+			}
+		});
+		
+		
+		
+		btnPlus.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PMDM = "+";
+			}
+		});
+		
+		btnMin.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PMDM = "-";
+			}
+		});
+		
+		btnDiv.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PMDM = "/";
+			}
+		});
+		
+		btnMul.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PMDM = "*";
+			}
+		});
+		
+		
+		
+		
+		btn0.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(firstNum.equals("")) {
+					;
+				}else {
+					firstNum += "0";
+				}
+			}
+		});
+				
+				
+		btn1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(PMDM.equals("")) {
+					firstNum += "1";
+				}else {
+					secondNum += "1";
+				}
+			}
+		});
+		
+		btn2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(PMDM.equals("")) {
+					firstNum += "2";
+				}else {
+					secondNum += "2";
+				}
+			}
+		});
+		
+		btn3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(PMDM.equals("")) {
+					firstNum += "3";
+				}else {
+					secondNum += "3";
+				}
+			}
+		});
+		
+		btn4.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(PMDM.equals("")) {
+					firstNum += "4";
+				}else {
+					secondNum += "4";
+				}
+			}
+		});
+		
+		btn5.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(PMDM.equals("")) {
+					firstNum += "5";
+				}else {
+					secondNum += "5";
+				}
+			}
+		});
+		
+		btn6.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(PMDM.equals("")) {
+					firstNum += "6";
+				}else {
+					secondNum += "6";
+				}
+			}
+		});
+		
+		btn7.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(PMDM.equals("")) {
+					firstNum += "7";
+				}else {
+					secondNum += "7";
+				}
+			}
+		});
+		
+		btn8.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(PMDM.equals("")) {
+					firstNum += "8";
+				}else {
+					secondNum += "8";
+				}
+			}
+		});
+		
+		btn9.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(PMDM.equals("")) {
+					firstNum += "9";
+				}else {
+					secondNum += "9";
+				}
+			}
+		});
+		
+		
+	}
+	
+	
 	
 	public static void main(String[] args) {
 		//계산기 시작
